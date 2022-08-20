@@ -1,0 +1,22 @@
+{
+  "name": "holy-grail-project",
+  "version": "1.0.0",
+  "description": "node app for holy grail project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VidaHerling/holy-grail-project.git"
+  },
+  "author": "herliing.codingcamp@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VidaHerling/holy-grail-project/issues"
+  },
+  "homepage": "https://github.com/VidaHerling/holy-grail-project#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

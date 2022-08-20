@@ -1,62 +1,13 @@
-function PlusMinus(props){
-  function handle(e){
-    if(e.target.id === "plus"){
-      props.handle({name: props.section, value: 1})
-      return;
-    }
-    props.handle({name: props.section, value: -1})
-  }
-  return (<>
-    <img src="./icons/plus_icon.png" id="plus" onClick={(e) =>handle(e)}/>
-    <img src="./icons/minus_icon.png" id="minus" onClick={(e) => handle(e)}/>
-    </>
-  )
-}
+const express = require('express');
+const app = express();
 
-function Data(props){
-  return (
-    <div>
-      Header: {props.data.header},
-      Left: {props.data.left},
-      Article: {props.data.article},
-      Right: {props.data.right},
-      Footer: {props.data.footer}
-    </div>
-  )
-}
+// serve static files from public directory
+app.use(express.static('public'));
 
-function App(){
-  const [data, setData] = React.useState({
-    header: 0,
-    left: 0,
-    article: 0,
-    right: 0,
-    footer: 0
-  })
-  
-  function handle(section){
-    const value = data[section.name] + section.value;
-    const object = { [section.name]:value };
-    setData({...data, object});
-    console.log(`value is ${value} and object is ${JSON.stringify(object)};
-    section.name is ${section.name}
-    section.value  is ${section.value}
-    data[section.name] is ${data[section.name]}`)
+app.get('/', (req, res)=>{
+  res.send("Hello World");
+})
 
-  }
-  
-  return(
-    <div className="container">
-      <Header handle={handle} data={data}/>
-      <Left handle={handle} data={data}/>
-      <Article handle={handle} data={data}/>
-      <Right handle={handle} data={data}/>
-      <Footer handle={handle} data={data}/>
-    </div>
-  )
-}
-
-ReactDOM.render(
-  <App />,
-  document.getElementById("root")
-);
+app.listen(3000, () => {
+  console.log("Running on Port 3000.")
+})
