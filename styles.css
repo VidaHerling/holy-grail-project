@@ -1,0 +1,60 @@
+html {
+  width: 100%;
+  height: 100vh;
+  font-size: 1em;
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  color:blue;
+  height: 100%;
+  font-size: 1rem;
+}
+
+.container {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-areas:
+    "head head head"
+    "left main right"
+    "foot foot foot";
+}
+
+.header {
+  background: lightblue;
+  grid-area: head;
+}
+
+.footer {
+  background: lightblue;
+  grid-area: foot;
+}
+
+.left {
+  background: pink;
+  grid-area: left;
+}
+
+.right {
+  background: pink;
+  grid-area: right;
+}
+
+.article {
+  background: lightgreen;
+  grid-area: main;
+}
+
+.section {
+  font-size: 2rem;
+}
+
+#plus, #minus {
+  width: 30px;
+  padding: 10px;
+}
