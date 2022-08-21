@@ -25,6 +25,28 @@ function Data(props){
   )
 }
 
+function read(){
+  return new Promise((resolve, reject) => {
+    const url = "/data";
+    superagent
+      .get(url)
+      .end((err, res)=> {
+        err ? reject(null) : resolve(res.body);
+      });
+  });
+}
+
+function update(section, value){
+  return new Promise((resolve, reject) => {
+    const url = `/update/${section}/${value}`;
+    superagent
+      .get(url)
+      .end((err, res) => {
+        err ? reject(null) : resolve(res.body);
+      });
+  });
+}
+
 function App(){
   const [data, setData] = React.useState({
     header: 0,
@@ -33,15 +55,21 @@ function App(){
     right: 0,
     footer: 0
   })
+
+  React.useEffect(() => {
+    //read db data and update UI
+    const response = read()
+      .then(res => {
+        setData(res)
+      });
+  }, [])
   
   function handle(section){
-    const value = data[section.name] + section.value;
-    const object = { [section.name]:value };
-    setData({...data, object});
-    console.log(`value is ${value} and object is ${JSON.stringify(object)};
-    section.name is ${section.name}
-    section.value  is ${section.value}
-    data[section.name] is ${data[section.name]}`)
+    //update db & local state
+    const response = update(section.name, section.value)
+      .then(res => {
+        setData(res)
+      })
 
   }
   
